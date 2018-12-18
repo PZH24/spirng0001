@@ -1,5 +1,5 @@
 package com.example.demo.iml;
 
-public interface MessgeServiceImp {
+public interface MessageServiceImp {
     public  void sendMessage(String Msg);
 }

@@ -1,18 +1,25 @@
 package com.example.demo.config;
 
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 
 import javax.jms.Queue;
+import javax.jms.Topic;
 
 @Configuration
 @EnableJms//启动jms
 public class activeMqConfig {
-    //注入
+    //注入队列
     @Bean
     public Queue queue(){
         return  new ActiveMQQueue("study.msg.queue");
+    }
+    //注入主题
+    @Bean
+    public Topic topic(){
+        return new ActiveMQTopic("study.msg.topic");
     }
 }

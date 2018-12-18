@@ -1,11 +1,10 @@
 package com.example.demo;
 
-import com.example.demo.iml.MessgeServiceImp;
+import com.example.demo.iml.MessageServiceImp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.Resource;
@@ -15,12 +14,20 @@ import javax.annotation.Resource;
 @WebAppConfiguration
 public class DemoApplicationTests {
 
-	@Resource
-	private MessgeServiceImp messageProducer;
+	@Resource(name = "Msg")
+	private MessageServiceImp queueProducer;
 	@Test
 	public void testSend() throws Exception {
 		for (int x = 0; x < 10; x++) {
-			this.messageProducer.sendMessage("study - " + x);
+			this.queueProducer.sendMessage("study - " + x);
+		}
+	}
+	@Resource(name = "TopicMsgService")
+	private MessageServiceImp topicProducer;
+	@Test
+	public void testTopicSend() throws Exception {
+		for (int x = 0; x < 5; x++) {
+			this.topicProducer.sendMessage("TopicStudy - " + x);
 		}
 	}
 }
