@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TopicConsumeService implements MessageConsumeServiceImp {
 
-    @JmsListener(destination = "study.msg.topic" )
+    @JmsListener(destination = "study.msg.topic", containerFactory = "myJmsContainerFactory" )
     public String receivesMessage(String Msg) {
         System.out.println("第二个接收消息topic1 :"+Msg);
         return "send Msg To topic2 :"+Msg;
     }
-    @JmsListener(destination = "study.msg.topic")
+    @JmsListener(destination = "study.msg.topic", containerFactory = "myJmsContainerFactory")
     @SendTo("study.msg.topic2")
     @Override
     public String receiveMessage(String Msg) {

@@ -18,7 +18,7 @@ public class TopicMsgService implements MessageServiceImp {
     public void sendMessage(String Msg) {
             this.jmsMessagingTemplate.convertAndSend(this.topic,Msg);
     }
-    @JmsListener(destination = "study.msg.topic2")
+    @JmsListener(destination = "study.msg.topic2" ,containerFactory = "myJmsContainerFactory")
     public void  receiveMessage(String msg){
         System.out.println("接收消息topic2 :"+msg);
     }
