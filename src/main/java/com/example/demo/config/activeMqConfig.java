@@ -25,6 +25,7 @@ public class activeMqConfig {
     public Topic topic(){
         return new ActiveMQTopic("study.msg.topic");
     }
+   //  注意： 在pub/sub模式中，对消息的监听需要对containerFactory进行以下配置 topic 需要加入这个，否则无法启动到消息接受者
     @Bean
     JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory){
         SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
